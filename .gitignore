@@ -4,5 +4,4 @@ node_modules/
 /reports/
 /blob-report/
 /playwright/.cache/
-/package-lock.json
 .DS_Store
