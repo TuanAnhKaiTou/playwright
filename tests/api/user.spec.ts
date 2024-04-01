@@ -1,20 +1,14 @@
 import { HTTP_CODE } from '@constants/http-code';
 import { UserResult } from '@core/types';
-import { randomNumber } from '@core/utils/generate';
+import * as user from '@data/user.json';
 import test, { expect } from '@playwright/test';
-import { createUser, deleteUser } from 'api/services/user.service';
+import { getUser } from 'api/services/user.service';
 
 test.describe('User - API Testing', { tag: ['@user', '@api'] }, () => {
-	test('should create an user', { tag: '@create' }, async () => {
-		const credentials = {
-			username: 'anhnt' + randomNumber(),
-			password: 'Test@123',
-		};
-		const _createUser = await createUser(credentials);
-		const response = (await _createUser.json()) as UserResult;
-		console.log('UUID', response);
-		expect(_createUser.status()).toEqual(HTTP_CODE.CREATE_SUCCESSFUL_201);
-		expect(response.username).toEqual(credentials.username);
-		await deleteUser(response.userID);
+	test('should get information of user', { tag: '@get' }, async () => {
+		const _getUser = await getUser(user.userId);
+		const response = (await _getUser.json()) as UserResult;
+		expect(_getUser.status()).toEqual(HTTP_CODE.SUCCESSFUL_200);
+		expect(response.username).toEqual(user.username);
 	});
 });
