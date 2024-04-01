@@ -1,12 +1,13 @@
 import { HTTP_CODE } from '@constants/http-code';
 import { UserResult } from '@core/types';
+import { randomNumber } from '@core/utils/generate';
 import test, { expect } from '@playwright/test';
 import { createUser, deleteUser } from 'api/services/user.service';
 
 test.describe('User - API Testing', { tag: ['@user', '@api'] }, () => {
 	test('should create an user', { tag: '@create' }, async () => {
 		const credentials = {
-			username: 'anhnt123',
+			username: 'anhnt' + randomNumber(),
 			password: 'Test@123',
 		};
 		const _createUser = await createUser(credentials);
