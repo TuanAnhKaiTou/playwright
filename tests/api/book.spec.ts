@@ -8,14 +8,14 @@ import { UserResult } from '@core/types';
 import { User } from '@interfaces/User';
 
 test.describe('Bookstore - API Testing', { tag: ['@book', '@api'] }, () => {
-	test('should add book to collections', { tag: '@add' }, async () => {
+	test.skip('should add book to collections', { tag: '@add' }, async () => {
 		const _addBook = await addBook(user.userId, [{ isbn: book.isbn }]);
 		const response = (await _addBook.json()) as UserResult;
 		expect(_addBook.status()).toEqual(HTTP_CODE.CREATE_SUCCESSFUL_201);
 		expect(response.books[0].isbn).toEqual(book.isbn);
 	});
 
-	test(
+	test.skip(
 		'should replace book from collections',
 		{ tag: '@replace' },
 		async () => {

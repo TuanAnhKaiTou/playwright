@@ -16,9 +16,11 @@
 	"author": "anhnt",
 	"license": "ISC",
 	"devDependencies": {
+		"@cliqz/adblocker-playwright": "^1.27.1",
 		"@playwright/test": "^1.42.1",
 		"@types/node": "^20.11.30",
 		"allure-playwright": "^2.15.0",
+		"cross-fetch": "^4.0.0",
 		"prettier": "^3.2.5",
 		"rimraf": "^5.0.5",
 		"typescript": "^5.4.3"

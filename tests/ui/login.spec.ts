@@ -1,6 +1,6 @@
 import { test, expect } from '@fixtures/page.fixture';
 import * as user from '@data/user.json';
-import { URL } from '@constants/url';
+import { URL } from '@constants/ui-endpoint';
 import { UI_TEXT } from '@constants/ui-text';
 
 test.beforeEach(async ({ page }) => {

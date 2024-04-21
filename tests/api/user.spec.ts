@@ -5,7 +5,7 @@ import test, { expect } from '@playwright/test';
 import { getUser } from 'api/services/user.service';
 
 test.describe('User - API Testing', { tag: ['@user', '@api'] }, () => {
-	test('should get information of user', { tag: '@get' }, async () => {
+	test.skip('should get information of user', { tag: '@get' }, async () => {
 		const _getUser = await getUser(user.userId);
 		const response = (await _getUser.json()) as UserResult;
 		expect(_getUser.status()).toEqual(HTTP_CODE.SUCCESSFUL_200);

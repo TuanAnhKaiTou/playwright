@@ -1,5 +1,7 @@
 import BasePage from '@core/page/base.page';
 import { profileLocator } from './locators/profile.locator';
+import { commonLocator } from './locators/common.locator';
+import { UI_TEXT } from '@constants/ui-text';
 
 export class ProfilePage extends BasePage {
 	get usernameLabel() {
@@ -23,7 +25,11 @@ export class ProfilePage extends BasePage {
 	}
 
 	async isBookVisible(book: string) {
-		return await this.locator(profileLocator.BOOK_LINK(book)).isVisible;
+		return await this.locator(commonLocator.BOOK_LINK(book)).isVisible();
+	}
+
+	getTextConfirmDeleteBook() {
+		return this.page.getByText(UI_TEXT.CONFIRM_DELETE_BOOK);
 	}
 
 	async clickDeleteButton() {

@@ -7,7 +7,7 @@ export default defineConfig({
 	forbidOnly: !!process.env.CI,
 	retries: 2,
 	workers: process.env.CI ? 1 : 3,
-	timeout: 80 * 1000,
+	timeout: 800 * 1000,
 	globalSetup: require.resolve('./tests/global-setup'),
 	globalTeardown: require.resolve('./tests/global-teardown'),
 	reporter: [

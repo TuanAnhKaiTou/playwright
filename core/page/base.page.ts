@@ -7,6 +7,8 @@ import {
 	StateOfElement,
 	WaitUntil,
 } from '@core/types';
+import { PlaywrightBlocker } from '@cliqz/adblocker-playwright';
+import fetch from 'cross-fetch';
 
 export default class BasePage implements IPage {
 	readonly page: Page;
@@ -15,6 +17,9 @@ export default class BasePage implements IPage {
 	constructor(page: Page) {
 		this.page = page;
 		this.context = page.context();
+		PlaywrightBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
+			blocker.enableBlockingInPage(this.page);
+		});
 	}
 
 	async goto(
