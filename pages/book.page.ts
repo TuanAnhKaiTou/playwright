@@ -15,20 +15,24 @@ export class BookPage extends BasePage {
 		await this.fill(this.locator(commonLocator.SEARCH_TEXT_BOX), book);
 	}
 
-	getBook(book: string) {
-		return this.locator(commonLocator.BOOK_LINK(book));
+	getBookWithBookName(book: string) {
+		return this.locator(commonLocator.BOOK_WITH_NAME(book));
+	}
+
+	getBook() {
+		return this.locator(commonLocator.BOOK_NAME);
 	}
 
 	async isBookVisible(book: string) {
-		return await this.getBook(book).isVisible();
+		return await this.getBookWithBookName(book).isVisible();
 	}
 
 	async isBookHidden(book: string) {
-		return await this.getBook(book).isHidden();
+		return await this.getBookWithBookName(book).isHidden();
 	}
 
 	async selectBook(book: string) {
-		await this.click(this.getBook(book));
+		await this.click(this.getBookWithBookName(book));
 	}
 
 	async clickAddCollectionButton() {

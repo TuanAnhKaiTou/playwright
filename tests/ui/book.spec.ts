@@ -28,9 +28,9 @@ test.describe('Bookstore - UI Testing', { tag: ['@book', '@ui'] }, () => {
 	);
 
 	const searchBookNames = ['Design', 'design'];
-	for (const book of searchBookNames) {
+	for (const search of searchBookNames) {
 		test(
-			`should search book with multiple results with data search "${book}"`,
+			`should search book with multiple results with data search "${search}"`,
 			{ tag: '@search' },
 			async ({ page, loginPage, profilePage, bookPage }) => {
 				await page.goto(URL.LOGIN_URL);
@@ -38,13 +38,11 @@ test.describe('Bookstore - UI Testing', { tag: ['@book', '@ui'] }, () => {
 				await expect(page).toHaveURL(URL.PROFILE_URL);
 				await expect(profilePage.usernameLabel).toHaveText(user.username);
 				await page.goto(URL.BOOKS_URL);
-				await bookPage.searchBook(book);
-				expect(
-					bookPage.isBookVisible('Learning JavaScript Design Patterns'),
-				).toBeTruthy();
-				expect(
-					bookPage.isBookVisible('Designing Evolvable Web APIs with ASP.NET'),
-				).toBeTruthy();
+				await bookPage.searchBook(search);
+				const searchResults = await bookPage.getBook().allTextContents();
+				searchResults.forEach((result) => {
+					expect(result).toContain(search);
+				});
 			},
 		);
 	}
